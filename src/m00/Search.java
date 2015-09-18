@@ -1,5 +1,7 @@
 package m00;
 
+import java.util.Arrays;
+
 public class Search {
 	
 	/**
@@ -10,18 +12,24 @@ public class Search {
 	 */
 	public static int find(int x, int[] a) {
 		//call binarySearch
-		return 0;
+		int result = binarySearch(x, a, 0, a.length-1);
+		return result;
 	} 
 	
 
-	public static int binarySearch(int x, int[] a) {
+	public static int binarySearch(int x, int[] a, int first, int last) {
 		// TODO finish implementation of binary search method
+
+		if(x>a[last] || x< a[first]){
+			return -1;
+		}
 		
-		int mid = a.length / 2;
+		int mid = (first+last) / 2;
+		System.out.println(mid);
 		if (x < a[mid]) {
-			return binarySearch(x, a /*not a but left half of a */);
+			return binarySearch(x, a, first, mid-1 /*not a but left half of a */);
 		} else if (x > a[mid]) {
-			return binarySearch(x, a /*not a but right half of a */);
+			return binarySearch(x, a, mid+1, last /*not a but right half of a */);
 		} else {
 			return mid; // because x == a[mid], i.e. we found it!
 		}
